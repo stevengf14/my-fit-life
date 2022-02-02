@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
     public User getByUsername(String username) {
         User obtainedUser = null;
         try {
-            // obtainedUser = userDao.findById(username).orElse(null);
+            obtainedUser = userDao.findByUsername(username);
         } catch (Exception e) {
             log.error("Error getting user: " + username, e.getMessage());
         }
@@ -79,7 +79,6 @@ public class UserServiceImpl implements UserService {
     }
     
     @Override
-    @Transactional
     public boolean update(User user) {
         boolean success = false;
         try {

@@ -18,4 +18,5 @@ public interface UserService {
     public boolean create(User user);
     
     public boolean update(User user);
+    
 }
