@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.com.stevenprojects.my_fit_life.service;
 
 import ec.com.stevenprojects.my_fit_life.dao.RoleDao;
@@ -24,7 +20,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
-    
+
     @Autowired
     private RoleDao roleDao;
 
@@ -34,7 +30,7 @@ public class UserServiceImpl implements UserService {
         try {
             users = (List<User>) userDao.findAll();
         } catch (Exception e) {
-            log.error("Error getting all users", e.getMessage());
+            log.error("Error getting all users: " + e.getMessage());
         }
         return users;
     }
@@ -45,18 +41,18 @@ public class UserServiceImpl implements UserService {
         try {
             obtainedUser = userDao.findById(userId).orElse(null);
         } catch (Exception e) {
-            log.error("Error getting user with id: " + userId, e.getMessage());
+            log.error("Error getting user with id: " + userId + ": " + e.getMessage());
         }
         return obtainedUser;
     }
-    
+
     @Override
     public User getByUsername(String username) {
         User obtainedUser = null;
         try {
             obtainedUser = userDao.findByUsername(username);
         } catch (Exception e) {
-            log.error("Error getting user: " + username, e.getMessage());
+            log.error("Error getting user: " + username + ": " + e.getMessage());
         }
         return obtainedUser;
     }
@@ -73,11 +69,11 @@ public class UserServiceImpl implements UserService {
             roleDao.save(role);
             success = true;
         } catch (Exception e) {
-            log.error("Error saving user", e.getMessage());
+            log.error("Error saving user: " + e.getMessage());
         }
         return success;
     }
-    
+
     @Override
     public boolean update(User user) {
         boolean success = false;
@@ -85,7 +81,7 @@ public class UserServiceImpl implements UserService {
             userDao.save(user);
             success = true;
         } catch (Exception e) {
-            log.error("Error saving user", e.getMessage());
+            log.error("Error saving user: " + e.getMessage());
         }
         return success;
     }
