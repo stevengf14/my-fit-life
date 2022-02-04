@@ -2,6 +2,8 @@ package ec.com.stevenprojects.my_fit_life.web;
 
 import ec.com.stevenprojects.my_fit_life.domain.User;
 import ec.com.stevenprojects.my_fit_life.service.UserService;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +60,8 @@ public class UserController {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setStatus("A");
+        user.setCreated(Timestamp.from(Instant.now()));
+        user.setUpdated(Timestamp.from(Instant.now()));
         if (userService.create(user)) {
             user = userService.getById(user.getUserId());
             return ResponseEntity.ok(user);

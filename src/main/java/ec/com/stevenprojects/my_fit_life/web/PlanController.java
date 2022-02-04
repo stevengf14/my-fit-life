@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RequestMapping("/plan")
 public class PlanController {
-    
+
     @Autowired
     private PlanService planService;
-    
+
     @GetMapping("/getAll")
     public ResponseEntity getAll(Plan plan) {
         List<Plan> plans = planService.getAll();
         return ResponseEntity.ok(plans);
     }
-    
+
     @GetMapping("/getById/{planId}")
     public ResponseEntity get(@PathVariable("planId") Long planId) {
         Plan plan = planService.getById(planId);
@@ -42,28 +42,31 @@ public class PlanController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Plan with id: " + planId + " Not Found");
         }
     }
-    
+
     @PostMapping("/create")
     public ResponseEntity create(@RequestBody Plan plan) {
         if (planService.save(plan)) {
-            plan = planService.getById(plan.getPlanId());
+            // plan = planService.getById(plan.getPlanId());
             return ResponseEntity.ok(plan);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Plan body is wrong: " + plan);
         }
     }
-    
+
     @PostMapping("/update/{planId}")
     public ResponseEntity update(@PathVariable("planId") Long planId, @RequestBody Plan plan) {
         Plan planToEdit = planService.getById(planId);
-        if(plan.getPlanName() != null){
+        if (plan.getPlanName() != null) {
             planToEdit.setPlanName(plan.getPlanName());
         }
-        if(plan.getPrice()!= null){
-            planToEdit.setPrice(plan.getPrice());
+        if (plan.getPlanDescription() != null) {
+            planToEdit.setPlanDescription(plan.getPlanDescription());
         }
-        if(plan.getTime()!= null){
-            planToEdit.setTime(plan.getTime());
+        if (plan.getPlanStatus() != null){
+            planToEdit.setPlanStatus(plan.getPlanStatus());
+        }
+        if (plan.getBenefits()!= null){
+            planToEdit.setBenefits(plan.getBenefits());
         }
         if (planService.save(planToEdit)) {
             return ResponseEntity.ok(planToEdit);
@@ -71,7 +74,7 @@ public class PlanController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Plan body is wrong: " + plan);
         }
     }
-    
+
     @DeleteMapping("/delete/{planId}")
     public ResponseEntity create(@PathVariable("planId") Long planId) {
         Plan planToDelete = planService.getById(planId);

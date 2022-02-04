@@ -33,10 +33,8 @@ public class User {
     @NotEmpty
     private String status;
 
-    @NotEmpty
     private Timestamp created;
 
-    @NotEmpty
     private Timestamp updated;
 
 //    @OneToMany
