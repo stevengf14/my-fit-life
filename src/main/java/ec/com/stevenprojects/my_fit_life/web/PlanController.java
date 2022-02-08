@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author teven Guamán - February 2022
+ * @author Steven Guamán - February 2022
  */
 @RestController
 @Slf4j
@@ -46,7 +46,6 @@ public class PlanController {
     @PostMapping("/create")
     public ResponseEntity create(@RequestBody Plan plan) {
         if (planService.save(plan)) {
-            // plan = planService.getById(plan.getPlanId());
             return ResponseEntity.ok(plan);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Plan body is wrong: " + plan);
