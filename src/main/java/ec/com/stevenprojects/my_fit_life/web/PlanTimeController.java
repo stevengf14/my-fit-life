@@ -26,7 +26,7 @@ public class PlanTimeController {
 
     @Autowired
     private PlanTimeService planTimeService;
-    
+
     @GetMapping("/getAll")
     public ResponseEntity getAll(PlanTime planTime) {
         List<PlanTime> planTimes = planTimeService.getAll();

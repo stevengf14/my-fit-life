@@ -38,7 +38,7 @@ public class PlanTime {
     private String planTimeDescription;
     
     @ManyToOne
-    @JoinColumn(name="plan_id")
+    @JoinColumn(name = "plan_id")
     private Plan plan;
     
 }

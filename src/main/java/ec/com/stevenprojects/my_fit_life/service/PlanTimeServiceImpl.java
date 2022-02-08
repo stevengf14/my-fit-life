@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class PlanTimeServiceImpl implements PlanTimeService {
-    
+
     @Autowired
     private PlanTimeDao planTimeDao;
-    
+
     @Override
     public List<PlanTime> getAll() {
         List<PlanTime> planTimes = null;
@@ -28,7 +28,7 @@ public class PlanTimeServiceImpl implements PlanTimeService {
         }
         return planTimes;
     }
-    
+
     @Override
     public PlanTime getById(Long planTimeId) {
         PlanTime obtainedPlan = null;

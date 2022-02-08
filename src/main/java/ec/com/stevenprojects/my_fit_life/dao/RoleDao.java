@@ -7,6 +7,6 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author Steven Guamán - February 2022
  */
-public interface RoleDao extends CrudRepository<Role, Long>{
-    
+public interface RoleDao extends CrudRepository<Role, Long> {
+
 }

@@ -22,16 +22,16 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RequestMapping("/role")
 public class RoleController {
-    
+
     @Autowired
     private RoleService roleService;
-    
+
     @GetMapping("/getAll")
     public ResponseEntity getAll(Role role) {
         List<Role> roles = roleService.getAll();
         return ResponseEntity.ok(roles);
     }
-    
+
     @GetMapping("/getById/{roleId}")
     public ResponseEntity get(@PathVariable("roleId") Long roleId) {
         Role role = roleService.getById(roleId);
@@ -41,7 +41,7 @@ public class RoleController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Role with id: " + roleId + " Not Found");
         }
     }
-    
+
     @PostMapping("/create")
     public ResponseEntity create(@RequestBody Role role) {
         if (roleService.save(role)) {
@@ -50,14 +50,14 @@ public class RoleController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Role body is wrong: " + role);
         }
     }
-    
+
     @PostMapping("/update/{roleId}")
     public ResponseEntity update(@PathVariable("roleId") Long roleId, @RequestBody Role role) {
         Role roleToEdit = roleService.getById(roleId);
-        if(role.getRoleName() != null){
+        if (role.getRoleName() != null) {
             roleToEdit.setRoleName(role.getRoleName());
         }
-        if(role.getUser()!= null){
+        if (role.getUser() != null) {
             roleToEdit.setUser(role.getUser());
         }
         if (roleService.save(roleToEdit)) {
@@ -66,5 +66,5 @@ public class RoleController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Role body is wrong: " + role);
         }
     }
-    
+
 }

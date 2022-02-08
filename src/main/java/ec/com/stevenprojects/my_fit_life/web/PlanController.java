@@ -62,10 +62,10 @@ public class PlanController {
         if (plan.getPlanDescription() != null) {
             planToEdit.setPlanDescription(plan.getPlanDescription());
         }
-        if (plan.getPlanStatus() != null){
+        if (plan.getPlanStatus() != null) {
             planToEdit.setPlanStatus(plan.getPlanStatus());
         }
-        if (plan.getBenefits()!= null){
+        if (plan.getBenefits() != null) {
             planToEdit.setBenefits(plan.getBenefits());
         }
         if (planService.save(planToEdit)) {

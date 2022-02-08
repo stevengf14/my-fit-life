@@ -16,17 +16,17 @@ import lombok.Data;
 @Data
 @Entity
 public class Role {
-    
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long roleId;
-    
+
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
-    
+
     @NotEmpty
     private String roleName;
 }
