@@ -27,8 +27,8 @@ public class PlanTime {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long planTimeId;
     
-    @DecimalMin(value = "0.0", inclusive = false)
-    @Digits(integer=5, fraction=2)
+    @DecimalMin(value = "0.0")
+    @Digits(integer=10, fraction=2)
     private BigDecimal price;
     
     @NotEmpty
